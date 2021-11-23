@@ -6,11 +6,22 @@ function find(callback) {
     var rows = null;
     //put your code her to select clients and return the array
     //....
-    callback(null, rows);
+     callback(null, rows);
 }
 
-function findByUsername(username, callback) {
+function findByUsername (username, callback) {
     const selectClient = (`SELECT * from account where username like '${username}';`);
+    database.getResult(selectClient, function(err, rows) {
+        if (!err) {
+            callback(null, rows);
+        } else {
+            console.log(err);
+        }
+    });
+}
+
+function findByNumclient (num_client, callback) {
+    const selectClient = (`SELECT * from account where username like '${num_client}';`);
     database.getResult(selectClient, function(err, rows) {
         if (!err) {
             callback(null, rows);
@@ -35,7 +46,7 @@ function cryptPassword(pass, callback) {
                 } else {
                     //console.log(`hash -> ${hash}`);
                     //return the computed hash
-                    callback(err, hash);
+                     callback(err, hash);
                 }
             });
         }
@@ -79,3 +90,14 @@ module.exports = {
     deleteClient,
     createInitialAccounts
 };
+
+function findByUsername (num_client, callback) {
+    const selectClient = (`SELECT * from account where username like '${num_client}';`);
+    database.getResult(selectClient, function(err, rows) {
+        if (!err) {
+            callback(null, rows);
+        } else {
+            console.log(err);
+        }
+    });
+}
