@@ -7,10 +7,9 @@ const getCatalogue = (request, response) => {
 
 const getProductByID = (request, response) => {
     const catalogueServices = require('../services/productServices');
-    let reference = request.params.reference;
+    let reference = request.params.id;
     catalogueServices.searchIDService(reference, function(err, rows) {
-        response.json(rows);
-        response.end();
+        response.render('article', {products : rows});
     });
 };
 
@@ -18,8 +17,8 @@ const getProductsByCategory = (request, response) => {
     const catalogueServices = require('../services/productServices');
     let reference = request.params.category;
     catalogueServices.searchCategoryService(category, function(err, rows) {
-        response.json(rows);
-        response.end();    });
+        response.render('article', {products : rows});   
+    });
 };
 
 module.exports = {

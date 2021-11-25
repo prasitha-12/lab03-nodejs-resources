@@ -5,9 +5,7 @@ function findAll(callback) {
     database.getResult(selectProducts, function(err, rows) {
         if (!err) {
             callback(null, rows);
-        } else {
-            console.log(err);
-            throw err;
+            
         }
     });
 }

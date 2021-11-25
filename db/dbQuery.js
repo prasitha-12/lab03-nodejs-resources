@@ -1,19 +1,18 @@
 const mysql = require('mysql');
-const databasename = "saleslab3";
+const databasename = "sql6453387";
 
 var pool = mysql.createPool({
     connectionLimit: 100,
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "saleslab3",
+    host: "sql6.freemysqlhosting.net",
+    user: "sql6453387",
+    password: "njZRIXTZv3",
+    database: "sql6453387",
     debug: true
 });
 
 function executeQuery(query, callback) {
     pool.getConnection(function(err, connection) {
         if (err) {
-            consoile.log("Connection ERROR---------");
             return callback(err, null);
         } else if (connection) {
             connection.query(query, function(err, rows, fields) {
@@ -40,5 +39,6 @@ function getResult(query, callback) {
 }
 
 module.exports = {
+    executeQuery,
     getResult
 };

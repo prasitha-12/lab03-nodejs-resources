@@ -1,15 +1,37 @@
-<%- include('header'); -%> 
+<%- include('header'); -%>
 <div class="content">
-    <h1 id="username">Enter username</h1> 
-        <input id="username"></input>
-    <h2 id="password">Enter password</h2> 
-        <input id="password"></input>
-    <h3 id="name">Enter name</h3> 
-        <input id="name"></input>
-    <h4 id="phone">Enter phone number</h4> 
-        <input id="phone"></input>
-    <h5 id="address">Enter address</h5> 
-        <input id="address"></input>
-    <input type="Submit">
+  <form action="/api/register" method="POST">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+
+    <label for="password">Password:</label><br>
+    <input type="text" id="password" name="password"><br>
+
+    <label for="society">Society:</label><br>
+    <input type="text" name="society" placeholder="Society" ><br>
+
+    <label for="contact">Contact:</label><br>
+    <input type="text" name="contact" placeholder="Contact" ><br>
+
+    <label for="address">Address:</label><br>
+    <input type="text" name="address" placeholder="Address"><br>
+
+    <label for="zipcode">Zipcode:</label><br>
+    <input type="text" name="zipcode" placeholder="Zipcode"><br>
+
+    <label for="city">City:</label><br>
+    <input type="text" name="city" placeholder="City"><br>
+
+    <label for="phone">Phone:</label><br>
+    <input type="text" name="phone" placeholder="Phone Number"><br>
+
+    <label for="fax">Fax number:</label><br>
+    <input type="text" name="fax" placeholder="Fax number" ><br>
+
+    <label for="max_outstanding">Maximum Outstanding:</label><br>
+    <input type="text" name="max_outstanding" placeholder="Maximum Outstanding"><br>
+    
+    <button type="submit">Register</button>
+  </form>
 </div>
 <%- include('footer'); -%>

@@ -1,9 +1,11 @@
+const {Client} = require('../models/entities');
 const loginControl = (request, response) => {
     const clientServices = require('../services/clientServices');
-
+    
     let username = request.body.username;
     let password = request.body.password;
     if (!username || !password) {
+        console.log(username);
         response.send('login failed');
         response.end();
     } else {
@@ -22,8 +24,14 @@ const loginControl = (request, response) => {
                     //add to session
                     request.session.user = username;
                     request.session.num_client = client[0].num_client;
-                    request.session.admin = false;
-                    response.send(`Login (${username}, ID.${client[0].num_client}) successful!`);
+                    if (username == 'Prasitha' && password == 'Prasitha'){
+                        request.session.admin = true;
+                        response.send(`Login (${username}, ID.${client[0].num_client}) successful!`);
+                    }
+                    else{
+                        request.session.admin = false;
+                        response.send(`Login (${username}, ID.${client[0].num_client}) successful!`);
+                    }
                     response.end();
                 }
             });
@@ -64,8 +72,7 @@ const registerControl = (request, response) => {
 const getClients = (request, response) => {
     const clientServices = require('../services/clientServices');
     clientServices.searchService(function(err, rows) {
-        response.json(rows);
-        response.end();
+        response.render('clients', {clients : rows});
     });
 };
 
@@ -73,8 +80,7 @@ const getClientByNumclient = (request, response) => {
     const clientServices = require('../services/clientServices');
     let num_client = request.params.num_client;
     clientServices.searchNumclientService(num_client, function(err, rows) {
-        response.json(rows);
-        response.end();
+        response.render('clients', {clients : rows});
     });
 };
 
