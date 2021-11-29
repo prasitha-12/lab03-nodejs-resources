@@ -1,3 +1,4 @@
+const e = require('express');
 const {Client} = require('../models/entities');
 const loginControl = (request, response) => {
     const clientServices = require('../services/clientServices');
@@ -69,24 +70,29 @@ const registerControl = (request, response) => {
     });
 };
 
-const getClients = (request, response) => {
-    const clientServices = require('../services/clientServices');
+const getClient = (request, response) => {
+    if(request.session.admin==true){
+        const clientServices = require('../services/clientServices');
     clientServices.searchService(function(err, rows) {
-        response.render('clients', {clients : rows});
+    response.render('client', {clients : rows})
     });
+    }else{
+        response.send("You are not admin");
+        response.end();
+    }
 };
 
 const getClientByNumclient = (request, response) => {
     const clientServices = require('../services/clientServices');
     let num_client = request.params.num_client;
     clientServices.searchNumclientService(num_client, function(err, rows) {
-        response.render('clients', {clients : rows});
+        response.render('client', {client : rows});
     });
 };
 
 module.exports = {
     loginControl,
     registerControl,
-    getClients,
+    getClient,
     getClientByNumclient
 };

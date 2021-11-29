@@ -1,7 +1,7 @@
 const database = require('./dbQuery');
 const bcrypt = require("bcryptjs");
 
-//select all clients
+//select all client
 function find(callback) {
     const selectClient = "SELECT * from client"
     //var rows = null;

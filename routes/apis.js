@@ -11,13 +11,13 @@ const router = express.Router();
 router.get('/api/catalogue', productController.getCatalogue);
 router.get('/api/article/:id', productController.getProductByID);
 
-//routes for dynamic processing of clients //-----------------------------------------------
+//routes for dynamic processing of client //-----------------------------------------------
 //route for registration
 router.post('/api/register', clientController.registerControl); 
 //route for login
 router.post('/api/login', clientController.loginControl);
 
-router.post('/api/clients', clientController.getClients);
+router.get('/api/client', clientController.getClient);
 
 //export router
 module.exports = router;
