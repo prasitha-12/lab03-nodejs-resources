@@ -71,15 +71,10 @@ const registerControl = (request, response) => {
 };
 
 const getClient = (request, response) => {
-    if(request.session.admin==true){
-        const clientServices = require('../services/clientServices');
+    const clientServices = require('../services/clientServices');
     clientServices.searchService(function(err, rows) {
     response.render('client', {clients : rows})
     });
-    }else{
-        response.send("You are not admin");
-        response.end();
-    }
 };
 
 const getClientByNumclient = (request, response) => {
